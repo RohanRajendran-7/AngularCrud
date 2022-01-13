@@ -1,0 +1,52 @@
+
+<div class="row p-2">
+    <h3>Employee Data</h3>
+    <div class="col md-3" *ngFor = "let item of employee">
+      <div class="card" *ngIf = "!item.isedit; else elseBlock">
+        <div class="card-body">
+          <div class="card-title">
+            Name: {{item.Name}}
+          </div>
+          <div class="card-subtitle">
+            Age: {{item.Age}}
+          </div>
+          <div class="card-text">
+            Salary: {{item.Salary}}
+          </div>
+          <br>
+          <button (click) = editRecord(item) class="btn btn-warning">Update</button>
+          <button class="btn btn-danger" style="margin-left: 10px;" (click)=deleteEmployee(item)>Delete</button>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="row p-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  Edit Employee
+                </div>
+                <div class="row">
+                  <div class="form-group">
+                    <div class="col md-12">
+                      <input type="text" [(ngModel)]="item.editName" class="form-control">
+                    </div>
+                    <br>
+                    <div class="col md-12">
+                      <input type="text" [(ngModel)]="item.editAge" class="form-control">
+                    </div>
+                    <br>
+                    <div class="col md-12">
+                      <input type="text" [(ngModel)]="item.editSalary" class="form-control">
+                    </div>
+                    <br>
+                  <button (click) = editEmployee(item) class="btn btn-warning">Update</button>
+                  <button class="btn btn-danger" style="margin-left: 10px;" (click)="item.isedit = false">Cancel</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>  
+      </ng-template>
+    </div>
+  </div>
+  
